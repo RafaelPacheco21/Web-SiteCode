@@ -516,3 +516,14 @@ span{
         margin-top: 2rem;
     }
 }
+
+.check-icon {
+    display: inline-block;
+    margin-left: 1rem; /* Ajusta el margen según sea necesario */
+    color: #00f867; /* Cambia el color del check según tu preferencia */
+}
+
+.check-icon i {
+    font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+}
+

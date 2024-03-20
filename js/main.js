@@ -60,3 +60,46 @@ const typed = new Typed('.multiple-text', {
     backDelay: 1000,
     loop: true
 });
+
+/*===================================== contact me ======================================*/ 
+
+// Espera a que el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", function() {
+    // Selecciona el formulario
+    var form = document.querySelector("form");
+
+    // Selecciona el icono de verificación
+    var checkIcon = document.querySelector(".check-icon");
+
+    // Agrega un evento de escucha para el evento de envío del formulario
+    form.addEventListener("submit", function(event) {
+        // Detén el comportamiento predeterminado de envío del formulario
+        event.preventDefault();
+
+        // Obtén los datos del formulario
+        var formData = new FormData(form);
+
+        // Envía los datos del formulario a Formspree usando Fetch API
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(function(response) {
+            // Si la respuesta es exitosa, muestra el icono de verificación y oculta el formulario
+            if (response.ok) {
+                form.reset(); // Borra el contenido del formulario después de enviarlo
+                checkIcon.style.display = 'inline'; // Muestra el icono de verificación
+            } else {
+                // Si hay un error, muestra un mensaje de error en la consola
+                console.error("Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.");
+            }
+        })
+        .catch(function(error) {
+            // Si hay un error de red, muestra un mensaje de error en la consola
+            console.error("Hubo un error de red. Por favor, inténtalo de nuevo más tarde.");
+        });
+    });
+});
